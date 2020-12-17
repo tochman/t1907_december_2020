@@ -6,7 +6,7 @@ const fetchUsers = async (page) => {
   // return response
 
   // Version 1.b
-  return await (await fetch(`https://reqres.in/api/users?page=${page}&per_page=4`)).json()
+  // return await (await fetch(`https://reqres.in/api/users?page=${page}&per_page=4`)).json()
 
   // Version 2
   // return fetch(`https://reqres.in/api/users?page=${page}&per_page=4`)
@@ -17,8 +17,6 @@ const fetchUsers = async (page) => {
   //     return json
   //   })
 
-
-
   // Version 3 (using Axios)
   // let response = await axios.get(
   //   'https://reqres.in/api/users',
@@ -26,6 +24,13 @@ const fetchUsers = async (page) => {
   //     params: { per_page: 4, page: page }
   //   })
   // return response.data
+
+  // Version 4 Old School ;-) But not that bad...
+  let request = new XMLHttpRequest()
+  let url = `https://reqres.in/api/users?page=${page}&per_page=4`
+  request.open("GET", url, false)
+  request.send()
+  return JSON.parse(request.responseText)
 }
 
 const formatUserDisplay = user => {
